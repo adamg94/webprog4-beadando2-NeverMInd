@@ -1,0 +1,44 @@
+@import 'Font'
+$color: #303066
+
+form
+    width: 250px
+    position: absolute
+    display: block
+    left: 0
+    top: 0
+    fieldset    
+        border: $color 1px solid
+        padding: 20px
+        legend
+            font-family: $font-family
+            text-align: center
+            color: $color
+        label
+            font-family: $font-family
+            color: $color
+        input[type="text"], input[type="password"]
+            margin: 10px 0
+            padding: 10px
+            border: 1px solid $color
+            color: $color
+            width: 162px
+        input[type="submit"], a
+            padding: 13px
+            background: white
+            border: 1px solid $color
+            font-family: $font-family
+            color: $color
+            font-size: 15px
+            display: inline-block
+            line-height: 1
+            transition: 200ms all
+            &:hover
+                color: white
+                background: $color
+                cursor: pointer
+                transition: 200ms all
+        a
+            text-decoration: none
+            margin-left: 10px
+            

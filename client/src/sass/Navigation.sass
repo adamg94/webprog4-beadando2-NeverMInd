@@ -1,0 +1,28 @@
+@import 'Font'
+$color: #6F9DAB
+
+nav
+  user-select: none
+  ul
+    text-align: center
+    li
+      list-style: none
+      display: inline-block
+      margin-top: 20px
+      &:first-child
+        a
+          border-left: 1px solid $color
+      a
+        text-decoration: none
+        font-family: $font-family
+        background: white
+        border: 1px solid $color
+        border-left: 0 
+        color: $color
+        transition: 150ms all
+        padding: 20px
+        &:hover
+          background: $color
+          border-color: $color
+          color: white
+          transition: 150ms all
