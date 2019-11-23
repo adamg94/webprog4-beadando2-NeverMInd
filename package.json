@@ -1,0 +1,27 @@
+{
+  "name": "webprog4-beadando2-nevermind",
+  "version": "1.0.0",
+  "description": "MERN Stack RESTful api CRUD ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamg94/webprog4-beadando2-NeverMInd.git"
+  },
+  "author": "Gulyás Ádám, Unger Erik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamg94/webprog4-beadando2-NeverMInd/issues"
+  },
+  "homepage": "https://github.com/adamg94/webprog4-beadando2-NeverMInd#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.12"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.0"
+  }
+}
