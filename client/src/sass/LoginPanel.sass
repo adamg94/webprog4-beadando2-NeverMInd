@@ -1,12 +1,19 @@
-@import 'Font'
-$color: #303066
+@import 'Main'
+
 
 form
+    @include center
     width: 250px
-    position: absolute
-    display: block
-    left: 0
-    top: 0
+    #info
+        background-color: rgba(48,48,102,0.6)
+        padding: 30px
+        border-radius: 12px
+        color: white
+        z-index: 54
+        line-height: 1.5
+        font-family: $font-family
+        display: block
+        visibility: hidden
     fieldset    
         border: $color 1px solid
         padding: 20px
@@ -40,5 +47,5 @@ form
                 transition: 200ms all
         a
             text-decoration: none
-            margin-left: 10px
+            margin-left: 33px
             

@@ -2,20 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './sass/Normalizer.css'
 import Navigation from './Navigation'
+import Home from './Home'
+import Register from './Register'
 import * as serviceWorker from './serviceWorker';
-import { LoginPanel, UserPanel } from './UserPanel'
+import LoginPanel from './LoginPanel'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+
 
 
 const routing = (
     <header>
-        <Router>
-            <Route path="/">
+         
+       <Router>
+            <Route exact path="/">
+              <LoginPanel />
+               <Navigation />
+               <Home />
+           </Route>
+           <Route exact path="/register">
                 <Navigation />
-                <LoginPanel />
-                <UserPanel />
-            </Route>
-        </Router>
+                <Register />
+           </Route>
+       </Router>
     </header>
 )
 

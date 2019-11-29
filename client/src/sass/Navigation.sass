@@ -1,8 +1,11 @@
-@import 'Font'
-$color: #6F9DAB
+@import 'Main'
 
 nav
   user-select: none
+  &::after
+    display: table
+    content: ''
+    clear: both
   ul
     text-align: center
     li
