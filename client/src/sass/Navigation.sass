@@ -1,6 +1,7 @@
 @import 'Main'
 
 nav
+  margin-top: 25px
   user-select: none
   &::after
     display: table
@@ -14,13 +15,14 @@ nav
       margin-top: 20px
       &:first-child
         a
-          border-left: 1px solid $color
+          border: none
+          box-shadow: 0 0 1px 1px rgba(0,0,0,0.23)
       a
         text-decoration: none
         font-family: $font-family
         background: white
-        border: 1px solid $color
-        border-left: 0 
+        border: none
+        box-shadow: 0 0 1px 1px rgba(0,0,0,0.23)
         color: $color
         transition: 150ms all
         padding: 20px

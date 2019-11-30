@@ -4,6 +4,14 @@ import './sass/LoginPanel.sass'
 import './sass/Register.sass' 
 
 
+function ShowMessage (k) {
+  k.style.visibility = "visible"
+
+  setTimeout(() => {
+    k.style.visibility = "hidden"
+  }, 2000);
+}
+
 class Register extends React.Component{
     
     constructor(props)
@@ -15,17 +23,25 @@ class Register extends React.Component{
         this.onChangePassword2 = this.onChangePassword2.bind(this);
         this.onChangeInfo = this.onChangeInfo.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
+        this.onChangeisVisible = this.onChangeisVisible.bind(this);
+        this.onChangeisLoading = this.onChangeisLoading.bind(this);
        
         this.state = {
             username: '',
             password: '',
             password2:'',
-            info: ''
+            info: '',
+            isVisible : false,
+            isLoading: true
           }
 
     }
-
+    componentDidMount()
+    {
+      this.setState({
+        isLoading: false
+      })
+    }
           onChangeUsername(e) {
             this.setState({
               username: e.target.value
@@ -41,17 +57,41 @@ class Register extends React.Component{
               password2: e.target.value
             })
           }
-        
-          onChangeInfo(e) {
-            
-            this.setState( {
-              info: e           
-            },
-            ()=>{
-              console.log(e)
-            })   
+          onChangeisLoading(e) {
+            this.setState({
+              isLoading: e.target.value
+            })
           }
+          onChangeInfo(e) {
+            this.setState({
+              info: e
+            }, () => {
+
+              let d = document.getElementById('info')
+              ShowMessage(d)
+            })
+              
+          }
+          onChangeisVisible(text)
+          {
+         
+           let d = document.getElementById('info')
+            if (d !== null)
+            {
+              
+            
+              this.onChangeInfo(text)
+            }
+            else{
+
+              
+                setTimeout(() => {
+                  this.onChangeisVisible(text)
+                }, 500); //500ms után már talán létre lett hozva a div, ha nem akkor azt írja ki hogy k = null
+               }
+            
           
+          }
     
           onSubmit(e) {
             e.preventDefault()
@@ -63,23 +103,28 @@ class Register extends React.Component{
               
                 if(newUser.password !== newUser.password2)
                 {
-                  this.onChangeInfo("The passwords are different!")
+                  this.onChangeisVisible("The passwords are different!")
                 }
                 if(newUser.password.length === 0) 
                 {
-                  this.onChangeInfo("The passwords are empty!") 
+                  this.onChangeisVisible("The passwords are empty!") 
                 }
                 else if(newUser.username.length < 4)
                 {
-                  this.onChangeInfo("Username minimum length 4!") 
+                  this.onChangeisVisible("Username minimum length 4!")
                 }
                 else{
-                          axios.post('http://localhost:5000/users/add', newUser)
-                          .then(res => {
-                            this.onChangeInfo(res.data.message)
-
-                          
+                  this.setState({
+                    isLoading: true
+                
+                  })
+                      axios.post('http://localhost:5000/users/add', newUser)
+                        .then(res => {
+                          this.setState({
+                            isLoading: false,
                           })
+                          this.onChangeisVisible(res.data.message)
+                      })
               
                 }
 
@@ -92,10 +137,17 @@ class Register extends React.Component{
     
     render () 
     {
+
+      if (this.state.isLoading) 
+      { 
+          return (
+              <div><p>Loading...</p></div>
+          )
+      }
         return (
           
         <form id="register" onSubmit={this.onSubmit}>
-          <div value={this.state.info} onChange={this.onChangeInfo} id="info">{this.state.info}</div>
+          <div id="info">{this.state.info}</div>
             <fieldset>
                 <legend>Register</legend>
                 <table>

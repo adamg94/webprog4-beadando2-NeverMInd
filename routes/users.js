@@ -30,7 +30,7 @@ router.route('/add').post((req,res) => {
      User.exists({ username : username }, async (err, doc) => {
          if (err)
          {
-             console.log(`Error: ${err}`)
+             console.log(`Error1: ${err}`)
              return
          }
          if(doc)
@@ -70,13 +70,13 @@ router.route('/add').post((req,res) => {
      bcrypt.genSalt(salt, async (err, gotSalt) => {
         if (err)
          {
-             console.log(`Error: ${err}`)
+             console.log(`Error2: ${err}`)
              return
          }
          await bcrypt.hash(password1, gotSalt, async (err2, hash) => {
             if (err2)
             {
-                console.log(`Error: ${err}`)
+                console.log(`Error3: ${err2}`)
                 return
             }
             let password = await hash
@@ -87,10 +87,10 @@ router.route('/add').post((req,res) => {
                 lastlogin,
                 level
             })
-            newUser.save(async(err3, result) => {
+            newUser.save((err3, result) => {
                 if (err3)
                 {
-                    console.log(`Error: ${err}`)
+                    console.log(`Error4: ${err3}`)
                     return
                 }
                 res.json({
@@ -297,7 +297,7 @@ router.route('/verify').post((req, res) => {
             }
 
             const sessionToken = await usession_doc._id
-           
+            
             if(sessionToken != token)
             {
                 
@@ -309,7 +309,7 @@ router.route('/verify').post((req, res) => {
             }
             else
             {
-            
+                
                 res.json({
                     "success" : true,
                     "level" : userLevel,

@@ -55,7 +55,7 @@ class LoginPanel extends React.Component{
                                
                         this.setState({
                           isLoading : false,
-                          token : res.data.token,
+                          token : data.token,
                           signedName : data.username
                           })
 
@@ -132,7 +132,6 @@ class LoginPanel extends React.Component{
 
     
           onSubmit(e) {
-            
             e.preventDefault()
             const User = {
                 username: this.state.username,
@@ -168,6 +167,7 @@ class LoginPanel extends React.Component{
                                     token: res.data.token
                                 })
                                 setInStorage('web4_beadando2',{ token: res.data.token, username: res.data.username})
+                                window.location = "/"
                             }
                             else{
                               this.onChangeisVisible(res.data.message)
@@ -219,6 +219,8 @@ class LoginPanel extends React.Component{
                 isLoading : false
               })
             }
+
+            window.location = "/"
           }
     
     render () 
@@ -243,10 +245,10 @@ class LoginPanel extends React.Component{
                 <fieldset>
                     <legend>Login</legend>
                 <label htmlFor="name">Username: </label>
-                <input type="text" id="name" name="name" value={this.state.username} onChange={this.onChangeUsername} />
+                <input required type="text" id="name" name="name" value={this.state.username} onChange={this.onChangeUsername} />
     
                 <label htmlFor="password">Password: </label>
-                <input type="password" id="password" name="password" value={this.state.password} onChange={this.onChangePassword} />
+                <input required type="password" id="password" name="password" value={this.state.password} onChange={this.onChangePassword} />
     
                 <input type="submit" value="Login" />
     
@@ -262,9 +264,7 @@ class LoginPanel extends React.Component{
                 <div id="info">{this.state.info}</div>
                 <fieldset>
                     <legend>Hello {this.state.signedName}!</legend>
-                        <p>
-                            You are logged in!
-                        </p>
+           
                     <input type="submit" value="Logout" />
                 </fieldset>
             </form>

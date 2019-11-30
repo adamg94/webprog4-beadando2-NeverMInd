@@ -1,0 +1,48 @@
+@import 'Main'
+
+#insert_form
+    @include center
+    color: $color
+    width: 500px
+    table
+        font-family: $font-family
+        line-height: 1.5
+        tr
+            td
+                padding: 5px
+                width: 40%
+                font-size: 19px
+                input, textarea
+                    width: 100%
+                    padding: 10px
+                    font-family: $font-family
+                    color: $color
+                    outline: none
+                    border: none
+                    box-shadow: 0 0 1px 1px rgba(0,0,0,0.23)
+                    resize: vertical
+                    font-size: 19px
+                input[type="submit"]
+                    text-align: center
+                    margin: 0 auto
+                    background: white
+                    border: 1px solid $color
+                    font-family: $font-family
+                    color: $color
+                    font-size: 15px
+                    display: inline-block
+                    line-height: 1.5
+                    transition: 200ms all
+                    border: none
+                    box-shadow: 0 0 1px 1px rgba(0,0,0,0.23)
+                    &:hover
+                        color: white
+                        background: $color
+                        cursor: pointer
+                        transition: 200ms all
+
+            td:first-child
+                //width: 60% !important
+                
+        
+

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './sass/Normalizer.css'
 import Navigation from './Navigation'
 import Home from './Home'
+import Insert from './Insert'
 import Register from './Register'
 import * as serviceWorker from './serviceWorker';
 import LoginPanel from './LoginPanel'
@@ -12,20 +13,25 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 
 const routing = (
-    <header>
+    <main>
          
        <Router>
             <Route exact path="/">
-              <LoginPanel />
-               <Navigation />
-               <Home />
+                <Navigation />
+                <Home />
+                <LoginPanel />    
+           </Route>
+           <Route exact path="/insert">
+                <Navigation />  
+                <Insert />
+                <LoginPanel />
            </Route>
            <Route exact path="/register">
                 <Navigation />
                 <Register />
            </Route>
        </Router>
-    </header>
+    </main>
 )
 
 
