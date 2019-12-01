@@ -38,7 +38,9 @@ class Insert extends React.Component{
             isLoading : true,
             level : 0,
             signedName : '',
-            info: ''
+            info: '',
+            token: '',
+            username: ''
         }
         
     }
@@ -57,8 +59,9 @@ class Insert extends React.Component{
 
                           this.setState({
                               isLoading : false,
-                              signedName : data.username,
-                              level: res.data.level
+                              username : data.username,
+                              level: res.data.level,
+                              token: res.data.token
                           })    
 
                           if(res.data.level !== 1)
@@ -201,7 +204,9 @@ class Insert extends React.Component{
                 mlength : this.state.mlength,
                 director : this.state.director,
                 writer : this.state.writer,
-                stars : this.state.stars
+                stars : this.state.stars,
+                token: this.state.token,
+                username: this.state.username
             }
 
                axios.post('http://localhost:5000/movies/add', Movie)

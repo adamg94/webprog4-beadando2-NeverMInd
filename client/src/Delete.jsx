@@ -16,7 +16,7 @@ function ShowMessage (k) {
   function MakeClickListener()
   {
     setTimeout(() => {
-        let gombok = document.querySelectorAll('#changebutton')
+        let gombok = document.querySelectorAll('#deletebutton')
             gombok.forEach((e, idx) => {
             e.addEventListener("click", () => {
                 SELECTEDINDEX = idx
@@ -73,7 +73,8 @@ class Delete extends React.Component{
             level : 0,
             signedName : '',
             info: '',
-            movies: []
+            movies: [],
+            token : ''
         }
         
     }
@@ -94,7 +95,8 @@ class Delete extends React.Component{
                           this.setState({
                               isLoading : false,
                               signedName : data.username,
-                              level: res.data.level
+                              level: res.data.level,
+                              token: res.data.token
                           })    
                           MakeClickListener()
                           if(res.data.level !== 1)
@@ -171,9 +173,14 @@ class Delete extends React.Component{
     {
       
         e.preventDefault()
-        axios.post('http://localhost:5000/movies/delete/' + this.state.movies[SELECTEDINDEX]._id )
+        const data = {
+            username : this.state.signedName,
+            token: this.state.token
+        }
+        
+        axios.post('http://localhost:5000/movies/delete/' + this.state.movies[SELECTEDINDEX]._id, data )
             .then(res => {
-                console.log(res)
+                this.onChangeisVisible(res.data.message)
         })
         window.location = '/delete/'
         

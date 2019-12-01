@@ -73,7 +73,8 @@ class Update extends React.Component{
             level : 0,
             signedName : '',
             info: '',
-            movies: []
+            movies: [],
+            token: ''
         }
         
     }
@@ -94,7 +95,8 @@ class Update extends React.Component{
                           this.setState({
                               isLoading : false,
                               signedName : data.username,
-                              level: res.data.level
+                              level: res.data.level,
+                              token: res.data.token
                           })    
                           MakeClickListener()
                           if(res.data.level !== 1)
@@ -171,7 +173,8 @@ class Update extends React.Component{
     {
       
         e.preventDefault()
-        axios.get('http://localhost:5000/movies/' + this.state.movies[SELECTEDINDEX]._id )
+
+        axios.get('http://localhost:5000/movies/' + this.state.movies[SELECTEDINDEX]._id)
             .then(res => {
                 console.log(res)
         })

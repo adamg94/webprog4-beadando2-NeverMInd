@@ -42,8 +42,9 @@ class Change extends React.Component{
             stars : '',
             isLoading : true,
             level : 0,
-            signedName : '',
-            info: ''
+            username : '',
+            info: '',
+            token: ''
         }
         
     }
@@ -62,8 +63,9 @@ class Change extends React.Component{
 
                           this.setState({
                               isLoading : false,
-                              signedName : data.username,
-                              level: res.data.level
+                              username : data.username,
+                              level: res.data.level,
+                              token: res.data.token
                           })    
                          
                           
@@ -224,7 +226,9 @@ class Change extends React.Component{
                 mlength : this.state.mlength,
                 director : this.state.director,
                 writer : this.state.writer,
-                stars : this.state.stars
+                stars : this.state.stars,
+                token: this.state.token,
+                username: this.state.username
             }
                axios.post('http://localhost:5000/movies/update', Movie)
                 .then(res => {
