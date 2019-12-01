@@ -2,6 +2,11 @@ import React from 'react'
 import axios from 'axios'
 import { getFromStorage } from './utils/storage'
 import './sass/Insert.sass' 
+
+
+const URI = window.location.pathname.split('/change/')[1]
+
+
 function ShowMessage (k) {
     k.style.visibility = "visible"
   
@@ -9,7 +14,7 @@ function ShowMessage (k) {
       k.style.visibility = "hidden"
     }, 2000);
   }
-class Insert extends React.Component{
+class Change extends React.Component{
    
     constructor(props)
     {
@@ -60,6 +65,22 @@ class Insert extends React.Component{
                               signedName : data.username,
                               level: res.data.level
                           })    
+                         
+                          
+
+                          axios.get('http://localhost:5000/movies/' + URI)
+                            .then(res => {
+                                this.setState({
+                                    title : res.data.name,
+                                    imdb : res.data.imdb_points,
+                                    rdate : res.data.creation_date.split('T')[0],
+                                    mlength : res.data.length_in_minutes,
+                                    director: res.data.director,
+                                    writer : res.data.writer,
+                                    stars : res.data.stars
+                                })
+                            })
+
 
                           if(res.data.level !== 1)
                           {
@@ -154,8 +175,9 @@ class Insert extends React.Component{
             isLoading : true
         })
         e.preventDefault()
+
+
         
-   
         if(this.state.level !== 1)
         {
             this.setState({
@@ -195,6 +217,7 @@ class Insert extends React.Component{
                }
                    
                const Movie = {
+                id : URI,
                 title : this.state.title,
                 imdb : this.state.imdb,
                 rdate : this.state.rdate,
@@ -203,9 +226,9 @@ class Insert extends React.Component{
                 writer : this.state.writer,
                 stars : this.state.stars
             }
-
-               axios.post('http://localhost:5000/movies/add', Movie)
+               axios.post('http://localhost:5000/movies/update', Movie)
                 .then(res => {
+                    console.log(res.data.message)
                     this.onChangeisVisible(res.data.message)
                     this.setState({
                             isLoading : false
@@ -259,7 +282,7 @@ class Insert extends React.Component{
                         <td><textarea value={this.state.stars} onChange={this.OnChangeStars} required id="stars" placeholder="Separate by commas."></textarea></td>
                     </tr>
                     <tr>
-                        <td colSpan="2"><input type="submit" value="Insert"/></td>
+                        <td colSpan="2"><input type="submit" value="Update"/></td>
                     </tr>
                 </tbody>
             </table>
@@ -276,4 +299,4 @@ class Insert extends React.Component{
        
    }
 }
-export default Insert
+export default Change

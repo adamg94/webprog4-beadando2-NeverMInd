@@ -60,11 +60,7 @@ export default class List extends Component{
     }
     MovieList()
     {
-        /*return this.state.movies.map(Movie => {
-            return <Movie movie={Movie} />
-        })*/
         return this.state.movies.map(film => {
-            //console.log(Movie.name)
             return <Movie movie ={film} key={film._id} />
         })
        

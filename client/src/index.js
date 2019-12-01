@@ -5,6 +5,8 @@ import Navigation from './Navigation'
 import Home from './Home'
 import Insert from './Insert'
 import List from './List'
+import Update from './Update'
+import Change from './Change'
 import Register from './Register'
 import * as serviceWorker from './serviceWorker';
 import LoginPanel from './LoginPanel'
@@ -22,6 +24,11 @@ const routing = (
                 <Home />
                 <LoginPanel />    
            </Route>
+           <Route path="/change">
+                <Navigation />
+                <LoginPanel />
+                <Change />    
+           </Route>
            <Route exact path="/insert">
                 <Navigation />  
                 <Insert />
@@ -30,8 +37,12 @@ const routing = (
            <Route exact path="/list">
                 <Navigation />  
                 <LoginPanel />
-                <List />
-                
+                <List />   
+           </Route>
+           <Route exact path="/update">
+                <Navigation />  
+                <LoginPanel />
+                <Update />   
            </Route>
            <Route exact path="/register">
                 <Navigation />

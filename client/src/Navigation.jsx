@@ -10,7 +10,7 @@ class Navigation extends React.Component{
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/list">List</Link></li>
                 <li><Link to="/insert">Insert</Link></li>
-                <li><Link to="/change">Change</Link></li>
+                <li><Link to="/update">Update</Link></li>
                 <li><Link to="/delete">Delete</Link></li>
             </ul>
         </nav>
