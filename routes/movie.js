@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const name_pattern = /[A-őA-Ő0-9:.-\s]*[^\\|€÷×\[\]ł$¤<ˇ^˘°˛~>#&@{}(),;?_*+/]/ //kicsit lehet szigorú regex
+const name_pattern = /[A-őA-Ő0-9:,'.-\s]*[^\\|€÷×\[\]ł$¤<ˇ^˘°˛~>#&@{}();?_*+/]/ //kicsit lehet szigorú regex
 const Movie = require('../models/movie.model')
 const request = require('request')
 

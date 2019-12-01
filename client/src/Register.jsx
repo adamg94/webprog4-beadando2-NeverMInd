@@ -131,7 +131,7 @@ class Register extends React.Component{
              
 
 
-              //window.location = '/'
+              window.location = '/'
           }
     
     
