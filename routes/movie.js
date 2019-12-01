@@ -1,5 +1,5 @@
 const router = require('express').Router()
-
+const name_pattern = /[A-őA-Ő0-9:.-\s]*[^\\|€÷×\[\]ł$¤<ˇ^˘°˛~>#&@{}(),;?_*+/]/ //kicsit lehet szigorú regex
 const Movie = require('../models/movie.model')
 
 router.route('/').get((req, res) => {
@@ -16,6 +16,40 @@ router.route('/:id').get((req, res) => {
         .then(Movies => res.json(Movies))
         .catch(err => res.status(400).json(`Error: ${err}`))
 })
+router.route('/delete/:id').post((req, res) => {
+    const id = req.params.id
+    Movie.findById({ _id : id }, (err, doc1) => {
+        if (err)
+        {
+            console.log(`Error1: ${err}`)
+            return
+        }
+        if(doc1)
+        {
+           Movie.deleteOne({_id : id}, (err2, dinfo) => {
+            if (err2)
+            {
+                console.log(`Error1: ${err2}`)
+                return
+            }
+            res.json({
+                "success" : true,
+                "message" : `The Movie ${doc1.name} Deleted!`
+            })
+            return
+
+           })
+            
+        }
+        else{
+            res.json({
+                "success" : false,
+                "message" : `The Movie doesn't exist!`
+            })
+            return
+        }
+    })
+})
 
 
 router.route('/update').post((req, res) => {
@@ -27,7 +61,7 @@ router.route('/update').post((req, res) => {
     let director = req.body.director
     let writer = req.body.writer
     let stars = req.body.stars.trim()
-    let name_pattern = /[A-őA-Ő0-9.-\s]*[^\\|€÷×\[\]ł$¤<ˇ^˘°˛~>#&@{}(),;?_*+/]/ //kicsit lehet szigorú regex
+    
     Movie.exists({ _id : id }, (err, doc1) => {
         if (err)
         {
@@ -176,7 +210,7 @@ router.route('/add').post((req, res) => {
     let director = req.body.director
     let writer = req.body.writer
     let stars = req.body.stars.trim()
-    let name_pattern = /[A-őA-Ő0-9.-\s]*[^\\|€÷×\[\]ł$¤<ˇ^˘°˛~>#&@{}(),;?_*+/]/ //kicsit lehet szigorú regex
+    
     Movie.exists({ name : title }, (err, doc1) => {
         if (err)
         {

@@ -7,6 +7,7 @@ import Insert from './Insert'
 import List from './List'
 import Update from './Update'
 import Change from './Change'
+import Delete from './Delete'
 import Register from './Register'
 import * as serviceWorker from './serviceWorker';
 import LoginPanel from './LoginPanel'
@@ -44,10 +45,16 @@ const routing = (
                 <LoginPanel />
                 <Update />   
            </Route>
+           <Route exact path="/delete">
+                <Navigation />  
+                <LoginPanel />
+                <Delete />   
+           </Route>
            <Route exact path="/register">
                 <Navigation />
                 <Register />
            </Route>
+
        </Router>
     </main>
 )
