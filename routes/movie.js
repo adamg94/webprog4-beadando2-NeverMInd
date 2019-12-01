@@ -17,7 +17,7 @@ router.route('/add').post((req, res) => {
     let director = req.body.director
     let writer = req.body.writer
     let stars = req.body.stars.trim()
-    let name_pattern = /[A-őA-Ő0-9\s]*[^\\|€÷×\[\]ł$¤<ˇ^˘°˛~>#&@{}(),;?.:-_*+-/]/g
+    let name_pattern = /[A-őA-Ő0-9.-\s]*[^\\|€÷×\[\]ł$¤<ˇ^˘°˛~>#&@{}(),;?_*+/]/
     Movie.exists({ name : title }, (err, doc1) => {
         if (err)
         {

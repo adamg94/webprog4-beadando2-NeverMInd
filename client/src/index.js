@@ -4,6 +4,7 @@ import './sass/Normalizer.css'
 import Navigation from './Navigation'
 import Home from './Home'
 import Insert from './Insert'
+import List from './List'
 import Register from './Register'
 import * as serviceWorker from './serviceWorker';
 import LoginPanel from './LoginPanel'
@@ -25,6 +26,12 @@ const routing = (
                 <Navigation />  
                 <Insert />
                 <LoginPanel />
+           </Route>
+           <Route exact path="/list">
+                <Navigation />  
+                <LoginPanel />
+                <List />
+                
            </Route>
            <Route exact path="/register">
                 <Navigation />
